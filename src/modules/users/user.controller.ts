@@ -20,6 +20,7 @@ import { CreateUserInput } from './user.schema';
 
 export const registerUser = asyncHandler(
   async (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     req: Request<Record<string, any>, Record<string, any>, CreateUserInput>,
     res: Response,
   ) => {

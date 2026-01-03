@@ -6,6 +6,7 @@ import { CreateDemoInput } from './demo.schema';
 
 export const createDemo = asyncHandler(
   async (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     req: Request<Record<string, any>, Record<string, any>, CreateDemoInput>,
     res: Response,
   ) => {
