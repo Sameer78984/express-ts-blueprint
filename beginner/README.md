@@ -43,7 +43,7 @@ You should see:
 
 ## 🛠️ Testing the API
 
-You can use tools like **Postman** or **Insomnia** to test these endpoints.
+Since we kept this project simple, we don't include automated test files. You can use tools like **Postman** or **Insomnia** to test it manually!
 
 ### 1. Register a User
 - **Method**: `POST`
@@ -98,15 +98,18 @@ src/
 ├── middleware/            # Helpers (Error handling, Auth checks)
 ├── modules/               # 📦 Features (Auth, Health)
 │   ├── auth/              # Auth (Controllers, Models, Routes)
+│   └── health/            # Simple health check endpoint
 ├── utils/                 # Utilities (Token generation)
 ├── app.ts                 # Express App Configuration
 ├── index.ts               # Entry Point (Server Start)
 └── routes/                # Main Router
 ```
 
-## 🧹 Code Quality (Linting & Formatting)
+---
 
-We use **ESLint** to keep our code clean and **Husky** to check it before you commit.
+## 🧹 Code Quality (Linting)
+
+We use **ESLint** to keep our code clean.
 
 ### Run Linting
 Check for errors:
@@ -118,11 +121,12 @@ Fix errors automatically:
 npm run lint:fix
 ```
 
-### Pre-commit Hooks
-When you run `git commit`, Husky will automatically run the linter. If there are errors, the commit will fail. This ensures no "bad code" gets into the repo!
-
 ---
 
 ## 🚀 Ready for more?
 
-Check out the code files! We have added detailed **comments** explaining exactly what each line does. Start with `src/modules/auth/auth.controller.ts`.
+Check out the **Production** folder in this repository for the advanced version with:
+- Automated Tests (Jest)
+- Architecture split (User vs Auth)
+- Docker
+- Strict Types

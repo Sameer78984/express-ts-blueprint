@@ -4,7 +4,17 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import { env } from "../config/env";
 
-export const configureSecurityMiddleware = (app: Express) => {
+/**
+ * Configures global security middleware.
+ *
+ * Applies:
+ * - Helmet (Secure Headers)
+ * - CORS (Cross-Origin Resource Sharing)
+ * - Rate Limiting (DoS Protection)
+ *
+ * @param app - The Express application instance
+ */
+export const configureSecurityMiddleware = (app: Express): void => {
   // Helmet for secure HTTP headers
   app.use(helmet());
 

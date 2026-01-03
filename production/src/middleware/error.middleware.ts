@@ -4,7 +4,23 @@ import { logger } from "../utils/logger";
 import { StatusCodes } from "../constants/httpStatus";
 import { env } from "../config/env";
 
-export const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
+/**
+ * Global Error Handler Middleware
+ *
+ * This function intercepts all errors thrown in the application.
+ * It ensures a consistent JSON error response structure.
+ *
+ * @param err - The error object
+ * @param req - The Express request object
+ * @param res - The Express response object
+ * @param _next - The next middleware function (unused but required for Express error handlers)
+ */
+export const errorHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+): void => {
   let error = err;
 
   if (!(error instanceof ApiError)) {

@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  beginner:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Install Dependencies
+      working-directory: ./beginner
+      run: npm ci
+      
+    - name: Lint
+      working-directory: ./beginner
+      run: npm run lint
+      
+    - name: Test (Unit & Integration)
+      working-directory: ./beginner
+      run: npm test
+      
+    - name: Build
+      working-directory: ./beginner
+      run: npm run build
+
+  production:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        
+    - name: Install Dependencies
+      working-directory: ./production
+      run: npm ci
+      
+    - name: Lint
+      working-directory: ./production
+      run: npm run lint
+      
+    - name: Test
+      working-directory: ./production
+      run: npm test
+      
+    - name: Build
+      working-directory: ./production
+      run: npm run build

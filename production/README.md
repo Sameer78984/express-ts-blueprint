@@ -31,13 +31,18 @@ Building a backend from scratch is time-consuming. You need to configure TypeScr
 ## ✨ Features
 
 - **🛡️ Type-Safe Everything**: Strict TypeScript configuration with strict mode enabled.
-- **🏗️ Modular Architecture**: Feature-based folder structure that scales with your app.
-- **📝 Validation**: Request validation using [Zod](https://zod.dev/) (no more raw body parsing).
-- **🔒 Security First**: Hardened with [Helmet](https://helmetjs.github.io/), CORS, and Rate Limiting.
+- **🏗️ Modular Architecture**: Clear separation between **Entities** (`user`) and **Features** (`auth`).
+- **📝 Validation**: Request validation using [Zod](https://zod.dev/).
+- **🔒 Security First**: 
+    - **HttpOnly Cookies**: For secure session management.
+    - **Private Passwords**: User passwords hidden by default via Mongoose Schema.
+    - **Hardened**: [Helmet](https://helmetjs.github.io/), CORS, and Rate Limiting enabled.
 - **⚡ Developer Experience**: Hot-reloading, beautiful logging, and pre-configured VS Code settings.
-- **⚙️ Env Validation**: The app crashes fast if required environment variables are missing.
-- **🐳 DevOps Ready**: Includes `Dockerfile` and `docker-compose` for instant deployment.
-- **🧹 Code Quality**: ESLint & Prettier pre-configured with Husky hooks.
+- **⚙️ Env Validation**: Fails fast if keys like `JWT_SECRET` are missing.
+- **🐳 DevOps Ready**: Includes `Dockerfile` and `docker-compose`.
+- **🧪 Professional Testing**: Jest + Supertest with Unit & Integration suites.
+- **🤖 CI/CD Pipeline**: GitHub Actions workflow for automated testing and building.
+- **🐶 Git Hooks**: Husky prevents bad commits (Lint/Test).
 
 ---
 
@@ -49,7 +54,7 @@ Follow these steps to get your server running in minutes.
 
 ```bash
 git clone https://github.com/Sameer78984/express-ts-blueprint.git
-cd ts-express-backend
+cd ts-express-backend/production
 npm install
 ```
 
@@ -73,14 +78,22 @@ npm run dev
 
 ```bash
 npm run build
-npm start
+npm run start
+```
+
+### 4️⃣ Test It!
+
+```bash
+npm test            # Run all tests
+npm run test:watch  # Run in watch mode
+npm run test:coverage # Generate coverage report
 ```
 
 ---
 
 ## 📂 Project Structure
 
-I follow a **feature-based** modular architecture. Instead of grouping by type (controllers/services), I group by feature.
+I follow a **feature-based** modular architecture, separating Data Entities from Business Logic.
 
 ```
 src/
@@ -88,11 +101,13 @@ src/
 ├── constants/          # 🗿 Static constants
 ├── middleware/         # 🛡️ Global Middlewares
 ├── modules/            # 📦 Feature Modules (The core logic)
-│   └── demo/
-│       ├── demo.controller.ts  # Handles HTTP Requests
-│       ├── demo.service.ts     # Business Logic
-│       ├── demo.schema.ts      # Validation Schemas
-│       └── demo.route.ts       # Route Definitions
+│   ├── auth/           # 🔐 Feature: Authentication
+│   │   ├── auth.controller.ts  # Handles HTTP Requests
+│   │   ├── auth.service.ts     # Business Logic & Hashing
+│   │   ├── auth.schema.ts      # Validation Schemas
+│   │   └── auth.route.ts       # Route Definitions
+│   └── user/           # 👤 Entity: User Data
+│       └── user.model.ts       # Database Schema (Mongoose)
 ├── utils/              # 🛠️ Helpers & Utilities
 ├── app.ts              # 🚀 App Configuration
 └── server.ts           # 🏁 Entry Point
@@ -104,7 +119,7 @@ src/
 
 I have added detailed **educational comments** throughout the code.
 
-- Check `src/server.ts` to see how we handle **Graceful Shutdowns**.
+- Check `src/modules/auth/auth.service.ts` to see **Business Logic** separation.
 - Check `src/config/env.ts` to learn about **Zod Environment Validation**.
 - Check `src/app.ts` to see our **Global Error Handling** strategy.
 

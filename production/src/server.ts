@@ -1,9 +1,18 @@
-import { app } from "./app";
+import app from "./app";
 import { env } from "./config/env";
 import { connectDB } from "./config/db";
 import { logger } from "./utils/logger";
 
-const startServer = async () => {
+/**
+ * Starts the Express server.
+ *
+ * 1. Connects to the database.
+ * 2. Starts listening on the configured port.
+ * 3. Sets up graceful shutdown signals.
+ *
+ * @returns {Promise<void>}
+ */
+const startServer = async (): Promise<void> => {
   try {
     // 1. Connect to Database (Fail fast if no DB)
     await connectDB();

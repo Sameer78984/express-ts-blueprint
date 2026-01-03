@@ -26,3 +26,11 @@ export const generateTokenAndSetCookie = (
 
   return token;
 };
+
+export const clearTokenCookie = (res: Response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  });
+};

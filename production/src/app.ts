@@ -4,8 +4,7 @@ import cookieParser from "cookie-parser";
 import { errorHandler } from "./middleware/error.middleware";
 import { StatusCodes } from "./constants/httpStatus";
 import { ApiError } from "./utils/apiError";
-import demoRoutes from "./modules/demo/demo.route";
-import userRoutes from "./modules/users/user.route";
+import authRoutes from "./modules/auth/auth.route";
 
 const app = express();
 
@@ -26,13 +25,12 @@ configureSecurityMiddleware(app);
 // ====================================================================
 
 // Health Check Endpoint (useful for Load Balancers)
-app.get("/health", (req, res) => {
+app.get("/health", (req: express.Request, res: express.Response) => {
   res.status(StatusCodes.OK).json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 // Feature Routes
-app.use("/api/demo", demoRoutes);
-app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
 
 // ====================================================================
 // 3. ERROR HANDLING
@@ -46,4 +44,4 @@ app.use((req, res, next) => {
 // Global Error Handler (Must be the last middleware)
 app.use(errorHandler);
 
-export { app };
+export default app;
