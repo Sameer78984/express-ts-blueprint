@@ -12,26 +12,29 @@ import { StatusCodes } from '../constants/httpStatus';
  * <T> stands for "Type". It means this function works with ANY Zod schema,
  * whether it's checking for a User, a Product, or a Post. It's flexible!
  */
-export const validateRequest = <T>(schema: ZodType<T>) => (req: Request, res: Response, next: NextFunction) => {
-  try {
-    // 1. Check if the Body, Query, or Params match the rules
-    schema.parse({
-      body: req.body,
-      query: req.query,
-      params: req.params,
-    });
-
-    // 2. If valid, let the request pass to the next stop (the Controller)
-    next();
-  } catch (error) {
-    // 3. If invalid, stop here and return an error
-    if (error instanceof ZodError) {
-      res.status(StatusCodes.BAD_REQUEST).json({
-        message: 'Validation failed',
-        errors: (error as any).errors, // List of what went wrong
+export const validateRequest =
+  <T>(schema: ZodType<T>) =>
+  (req: Request, res: Response, next: NextFunction) => {
+    try {
+      // 1. Check if the Body, Query, or Params match the rules
+      schema.parse({
+        body: req.body,
+        query: req.query,
+        params: req.params,
       });
-    } else {
-      next(error);
+
+      // 2. If valid, let the request pass to the next stop (the Controller)
+      next();
+    } catch (error) {
+      // 3. If invalid, stop here and return an error
+      if (error instanceof ZodError) {
+        res.status(StatusCodes.BAD_REQUEST).json({
+          message: 'Validation failed',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          errors: (error as any).errors, // List of what went wrong
+        });
+      } else {
+        next(error);
+      }
     }
-  }
-};
+  };

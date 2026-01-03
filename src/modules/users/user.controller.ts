@@ -19,7 +19,10 @@ import { CreateUserInput } from './user.schema';
  */
 
 export const registerUser = asyncHandler(
-  async (req: Request<{}, {}, CreateUserInput>, res: Response) => {
+  async (
+    req: Request<Record<string, any>, Record<string, any>, CreateUserInput>,
+    res: Response,
+  ) => {
     // 1. Controller calls the Service to register the user
     const user = await userService.registerUser(req.body);
 

@@ -4,7 +4,7 @@ import { logger } from '../utils/logger';
 import { StatusCodes } from '../constants/httpStatus';
 import { env } from '../config/env';
 
-export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
   let error = err;
 
   if (!(error instanceof ApiError)) {

@@ -5,7 +5,10 @@ import * as demoService from './demo.service';
 import { CreateDemoInput } from './demo.schema';
 
 export const createDemo = asyncHandler(
-  async (req: Request<{}, {}, CreateDemoInput>, res: Response) => {
+  async (
+    req: Request<Record<string, any>, Record<string, any>, CreateDemoInput>,
+    res: Response,
+  ) => {
     const result = await demoService.createDemoMessage(req.body);
     res.status(StatusCodes.CREATED).json(result);
   },

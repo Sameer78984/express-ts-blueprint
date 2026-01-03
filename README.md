@@ -59,11 +59,13 @@ cp .env.example .env
 ### 3️⃣ Run It!
 
 **Development Mode** (with hot-reload):
+
 ```bash
 npm run dev
 ```
 
 **Production Build**:
+
 ```bash
 npm run build
 npm start
