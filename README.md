@@ -43,7 +43,7 @@ Follow these steps to get your server running in minutes.
 ### 1️⃣ Clone & Install
 
 ```bash
-git clone https://github.com/your-username/ts-express-backend.git
+git clone https://github.com/Sameer78984/ts-express-backend.git
 cd ts-express-backend
 npm install
 ```
