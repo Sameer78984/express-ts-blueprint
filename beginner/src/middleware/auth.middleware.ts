@@ -14,14 +14,19 @@ declare global {
 
 export const protect = (req: Request, res: Response, next: NextFunction) => {
   try {
-    // 1. Get Token from Header (Format: "Bearer <token>")
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      res.status(401).json({ success: false, message: "No token provided" });
-      return;
+    let token;
+
+    // 1. Get Token from Header (Format: "Bearer <token>") OR Cookie
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
+      token = req.headers.authorization.split(" ")[1];
+    } else if (req.cookies && req.cookies.token) {
+      token = req.cookies.token;
     }
 
-    const token = authHeader.split(" ")[1];
+    if (!token) {
+      res.status(401).json({ success: false, message: "Not authorized to access this route" });
+      return;
+    }
 
     // 2. Verify Token
     const decoded = jwt.verify(token, JWT_SECRET);

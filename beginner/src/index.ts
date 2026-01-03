@@ -8,15 +8,14 @@ dotenv.config();
 const PORT = process.env.PORT || 3000;
 
 // Connect to Database first, then start server
-// Connect to Database first, then start server
-connectDB();
-
-// Turn on the server!
-app.listen(PORT, () => {
-  console.log(`
-  🚀 Server is running!
-  ---------------------
-  📡 URL: http://localhost:${PORT}
-  🏥 Health: http://localhost:${PORT}/api/health
-  `);
+connectDB().then(() => {
+  // Turn on the server!
+  app.listen(PORT, () => {
+    console.log(`
+    🚀 Server is running!
+    ---------------------
+    📡 URL: http://localhost:${PORT}
+    🏥 Health: http://localhost:${PORT}/api/health
+    `);
+  });
 });
