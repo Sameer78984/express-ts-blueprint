@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import router from "./routes/routes";
+import router from "./routes/index";
 import { errorHandler } from "./middleware/error.middleware";
 
 // 1. Create the Express app
