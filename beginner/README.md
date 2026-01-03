@@ -4,6 +4,14 @@ Welcome! This is the simplest possible way to build a backend using **Express.js
 
 We have stripped away all the complex tools (Docker, Zod, sophisticated logging) to focus on one thing: **How it works.**
 
+## 🎓 What You Will Learn
+- **Express**: How to build a server.
+- **TypeScript**: How to write safe code.
+- **MongoDB**: How to save data.
+- **Security**: How to handle passwords and login tokens safely.
+
+---
+
 ## 🏁 Getting Started
 
 ### 1. Install Dependencies
@@ -29,71 +37,70 @@ You should see:
 🚀 Server is running on http://localhost:3000
 ```
 
-### 4. Test It
-- **Health Check**: `GET http://localhost:3000/api/health`
-- **Get Demos**: `GET http://localhost:3000/api/demos`
-- **Create Demo**: `POST http://localhost:3000/api/demos`
-  - Body: `{"title": "Learn Express", "description": "It is fun!"}`
+---
+
+## 🛠️ Testing the API
+
+You can use tools like **Postman** or **Insomnia** to test these endpoints.
+
+### 1. Register a User
+- **Method**: `POST`
+- **URL**: `http://localhost:3000/api/auth/register`
+- **Body** (JSON):
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword123"
+  }
+  ```
+- **Response**: You will be automatically logged in! The server sends a **HTTPOnly Cookie** with your token.
+
+### 2. Login
+- **Method**: `POST`
+- **URL**: `http://localhost:3000/api/auth/login`
+- **Body** (JSON):
+  ```json
+  {
+    "email": "user@example.com",
+    "password": "securepassword123"
+  }
+  ```
+
+### 3. Access Protected Route
+- **Method**: `GET`
+- **URL**: `http://localhost:3000/api/health`
+- **Note**: Since the token is in a cookie, your browser/Postman will automatically send it.
+
+### 4. Logout
+- **Method**: `POST`
+- **URL**: `http://localhost:3000/api/auth/logout`
 
 ---
 
-## 📂 Project Structure
+## 🧠 Key Concepts Explained
 
+### 🔐 Passwords & Security
+We **never** store passwords in plain text. If a hacker viewed our database, they would see `user123` as `$2a$10$w...`.
+- **Hashing**: We use `bcrypt` to scramble the password before saving it.
+- **Validation**: We use `express-validator` to ensure emails look like emails (`@`) and passwords are strong enough.
+
+### 🎟️ Tokens (JWT) & Cookies
+When you login, the server gives you a **Token** (like a digital ID card).
+- **HTTPOnly Cookies**: We put this token inside a special cookie that JavaScript cannot read. This prevents cross-site scripting (XSS) attacks.
+
+### 📂 Project Structure
 ```
 src/
 ├── config/                # Database connection logic
-├── controllers/           # Handles the logic (getHealth, createDemo)
-├── middleware/            # Error handling
-├── models/                # Database Schemas (Mongoose)
-├── utils/                 # Helpers (Logger, API Response, Async Wrapper)
-├── app.ts                 # Express Setup
-├── index.ts               # Entry Point (Connects DB & Starts Server)
-└── routes/                # All URL paths defined here
+├── middleware/            # Helpers (Error handling, Auth checks)
+├── modules/               # 📦 Features (Auth, Health)
+│   ├── auth/              # Auth (Controllers, Models, Routes)
+├── utils/                 # Utilities (Token generation)
+├── app.ts                 # Express App Configuration
+├── index.ts               # Entry Point (Server Start)
+└── routes/                # Main Router
 ```
-
-## 🧠 Theory: The Request Lifecycle
-
-When you visit a URL (like `/api/health`), here is exactly what happens:
-
-1.  **Request**: The browser sends a request to your server.
-2.  **`index.ts`**: The server is listening and receives the request.
-3.  **`app.ts`**: Express looks at the request and sends it to the **Router**.
-4.  **`routes.ts`**: Matches the URL `/health` and calls the specific **Controller** (`getHealth`).
-5.  **`health.controller.ts`**: The function runs. It prepares the data and sends a **Response** JSON back to you.
-
-If any error happens, it goes to the **Error Middleware**.
-
----
-
-## 👩‍💻 How to Add a New Route
-
-Try this exercise to learn!
-
-1.  **Create a Controller**:
-    Create `src/controllers/user.controller.ts`:
-    ```typescript
-    import { Request, Response } from "express";
-
-    export const getUser = (req: Request, res: Response) => {
-      res.json({ name: "Alice", id: 1 });
-    };
-    ```
-
-2.  **Add to Router**:
-    Open `src/routes.ts`:
-    ```typescript
-    import { getUser } from "./controllers/user.controller";
-    // ...
-    router.get("/user", getUser);
-    ```
-
-3.  **Test**: Visit `http://localhost:3000/api/user`.
-
----
 
 ## 🚀 Ready for more?
 
-Once you understand this flow, you are ready for the **Production** version!
-The production version does the exact same thing, but it organizes files into **Modules** (User Module, Product Module) and adds layers of **Security** and **Validation**.
-
-👉 **[Go to Production Version](../production/)**
+Check out the code files! We have added detailed **comments** explaining exactly what each line does. Start with `src/modules/auth/auth.controller.ts`.

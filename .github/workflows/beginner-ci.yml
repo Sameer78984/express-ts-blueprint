@@ -1,0 +1,38 @@
+name: Beginner CI
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'beginner/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'beginner/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./beginner
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        cache-dependency-path: beginner/package-lock.json
+        
+    - name: Install Dependencies
+      run: npm ci
+      
+    - name: Build Project
+      run: npm run build
+      
+    - name: Verify Start Script
+      run: node dist/index.js & PID=$! && sleep 5 && kill $PID
