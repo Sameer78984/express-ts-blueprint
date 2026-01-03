@@ -104,6 +104,25 @@ src/
 └── routes/                # Main Router
 ```
 
+## 🧹 Code Quality (Linting & Formatting)
+
+We use **ESLint** to keep our code clean and **Husky** to check it before you commit.
+
+### Run Linting
+Check for errors:
+```bash
+npm run lint
+```
+Fix errors automatically:
+```bash
+npm run lint:fix
+```
+
+### Pre-commit Hooks
+When you run `git commit`, Husky will automatically run the linter. If there are errors, the commit will fail. This ensures no "bad code" gets into the repo!
+
+---
+
 ## 🚀 Ready for more?
 
 Check out the code files! We have added detailed **comments** explaining exactly what each line does. Start with `src/modules/auth/auth.controller.ts`.

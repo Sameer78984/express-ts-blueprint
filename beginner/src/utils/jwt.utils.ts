@@ -6,6 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "my_super_secret_key_123";
 
 // Generate a JSON Web Token (JWT) and set it as a HTTPOnly cookie
 // A token is like a digital ID card. We give it to the user after they log in.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const generateTokenAndSetCookie = (res: Response, userId: any, email: string): string => {
   const payload = { userId, email };
   

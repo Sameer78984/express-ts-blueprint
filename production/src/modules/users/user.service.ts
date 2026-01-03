@@ -15,13 +15,13 @@ export const registerUser = async (input: CreateUserInput) => {
   const hashedPassword = await bcrypt.hash(input.password, 10); // Hash with 10 rounds
 
   // 3. Save the user (with hashed password)
-  const newUser = { 
-    ...input, 
+  const newUser = {
+    ...input,
     password: hashedPassword, // Store hash, not plain text
-    id: users.length + 1, 
-    createdAt: new Date() 
+    id: users.length + 1,
+    createdAt: new Date(),
   };
-  users.push(newUser); 
+  users.push(newUser);
 
   // 4. Return the created user (omit password for safety in real apps, but we'll return it here for demo consistency or just return what's needed)
   return newUser;

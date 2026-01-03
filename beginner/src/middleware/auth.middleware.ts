@@ -3,14 +3,7 @@ import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET || "my_super_secret_key_123";
 
-// Extend Express Request to include 'user' (TypeScript magic)
-declare global {
-  namespace Express {
-    interface Request {
-      user?: any;
-    }
-  }
-}
+// 1. Definition (What a User looks like) - Moved to types/express.d.ts
 
 export const protect = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -36,7 +29,7 @@ export const protect = (req: Request, res: Response, next: NextFunction) => {
 
     next(); // Proceed to the protected route
 
-  } catch (error) {
+  } catch {
     res.status(401).json({ success: false, message: "Invalid or expired token" });
   }
 };
