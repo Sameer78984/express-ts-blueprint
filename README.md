@@ -19,7 +19,7 @@
 
 Building a backend from scratch is time-consuming. You need to configure TypeScript, set up linting, ensure type safety for environment variables, and build a scalable folder structure.
 
-**We've done the heavy lifting for you.** This template isn't just a "Hello World" — it's an **opinionated, enterprise-grade foundation** used by professional teams to ship products faster.
+**I have done the heavy lifting for you.** This template isn't just a "Hello World" — it's an **opinionated, enterprise-grade foundation** used by professional teams to ship products faster.
 
 ---
 
@@ -75,7 +75,7 @@ npm start
 
 ## 📂 Project Structure
 
-We follow a **feature-based** modular architecture. Instead of grouping by type (controllers/services), we group by feature.
+I follow a **feature-based** modular architecture. Instead of grouping by type (controllers/services), I group by feature.
 
 ```
 src/
@@ -97,7 +97,7 @@ src/
 
 ## 📚 Learn by Example
 
-We've added detailed **educational comments** throughout the code.
+I have added detailed **educational comments** throughout the code.
 
 - Check `src/server.ts` to see how we handle **Graceful Shutdowns**.
 - Check `src/config/env.ts` to learn about **Zod Environment Validation**.
@@ -107,7 +107,7 @@ We've added detailed **educational comments** throughout the code.
 
 ## 🤝 Contribution
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
+I welcome contributions! Please see my [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
