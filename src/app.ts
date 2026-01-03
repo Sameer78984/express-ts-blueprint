@@ -4,6 +4,7 @@ import { errorHandler } from './middleware/error.middleware';
 import { StatusCodes } from './constants/httpStatus';
 import { ApiError } from './utils/apiError';
 import demoRoutes from './modules/demo/demo.route';
+import userRoutes from './modules/users/user.route';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.get('/health', (req, res) => {
 
 // Feature Routes
 app.use('/api/demo', demoRoutes);
+app.use('/api/users', userRoutes);
 
 // ====================================================================
 // 3. ERROR HANDLING
