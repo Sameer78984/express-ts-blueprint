@@ -1,5 +1,5 @@
-import { Request } from 'express';
-import { Query } from 'express-serve-static-core';
+import { Request } from "express";
+import { Query } from "express-serve-static-core";
 
 export interface TypedRequest<T> extends Request {
   body: T;

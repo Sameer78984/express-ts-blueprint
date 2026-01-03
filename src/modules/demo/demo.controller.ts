@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { StatusCodes } from '../../constants/httpStatus';
-import { asyncHandler } from '../../utils/asyncHandler';
-import * as demoService from './demo.service';
-import { CreateDemoInput } from './demo.schema';
+import { Request, Response } from "express";
+import { StatusCodes } from "../../constants/httpStatus";
+import { asyncHandler } from "../../utils/asyncHandler";
+import * as demoService from "./demo.service";
+import { CreateDemoInput } from "./demo.schema";
 
 export const createDemo = asyncHandler(
   async (

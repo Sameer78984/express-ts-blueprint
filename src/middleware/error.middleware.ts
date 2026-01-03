@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import { ApiError } from '../utils/apiError';
-import { logger } from '../utils/logger';
-import { StatusCodes } from '../constants/httpStatus';
-import { env } from '../config/env';
+import { Request, Response, NextFunction } from "express";
+import { ApiError } from "../utils/apiError";
+import { logger } from "../utils/logger";
+import { StatusCodes } from "../constants/httpStatus";
+import { env } from "../config/env";
 
 export const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
   let error = err;
@@ -10,7 +10,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, _next: Nex
   if (!(error instanceof ApiError)) {
     const statusCode =
       error instanceof ApiError ? error.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
-    const message = error.message || 'Internal Server Error';
+    const message = error.message || "Internal Server Error";
     error = new ApiError(statusCode, message, false, err.stack);
   }
 
@@ -23,7 +23,7 @@ export const errorHandler = (err: Error, req: Request, res: Response, _next: Nex
   const response = {
     code: statusCode,
     message,
-    ...(env.NODE_ENV === 'development' && { stack }),
+    ...(env.NODE_ENV === "development" && { stack }),
   };
 
   res.status(statusCode).json(response);

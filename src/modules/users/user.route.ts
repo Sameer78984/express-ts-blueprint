@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import * as userController from './user.controller';
-import { createUserSchema } from './user.schema';
-import { validateRequest } from '../../middleware/validate.middleware';
+import { Router } from "express";
+import * as userController from "./user.controller";
+import { createUserSchema } from "./user.schema";
+import { validateRequest } from "../../middleware/validate.middleware";
 
 const router = Router();
 
@@ -15,9 +15,9 @@ const router = Router();
 
 // Define Routes
 // GET /api/users -> Go to Controller -> getUsers function
-router.get('/', userController.getUsers);
+router.get("/", userController.getUsers);
 
 // POST /api/users -> Validate Data -> Go to Controller -> registerUser
-router.post('/', validateRequest(createUserSchema), userController.registerUser);
+router.post("/", validateRequest(createUserSchema), userController.registerUser);
 
 export default router;

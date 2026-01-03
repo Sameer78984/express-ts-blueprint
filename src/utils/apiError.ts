@@ -1,11 +1,11 @@
-import { StatusCode } from '../constants/httpStatus';
+import { StatusCode } from "../constants/httpStatus";
 
 export class ApiError extends Error {
   statusCode: StatusCode;
   isOperational: boolean;
   override stack?: string;
 
-  constructor(statusCode: StatusCode, message: string, isOperational = true, stack = '') {
+  constructor(statusCode: StatusCode, message: string, isOperational = true, stack = "") {
     super(message);
     this.statusCode = statusCode;
     this.isOperational = isOperational;

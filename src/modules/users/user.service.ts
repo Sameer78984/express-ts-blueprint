@@ -1,4 +1,4 @@
-import { CreateUserInput } from './user.schema';
+import { CreateUserInput } from "./user.schema";
 
 /**
  * 🧠 SERVICE (The Brain)
@@ -20,7 +20,7 @@ export const registerUser = async (input: CreateUserInput) => {
   // 1. Check if user already exists (Business Logic)
   const existingUser = users.find((u) => u.email === input.email);
   if (existingUser) {
-    throw new Error('User with this email already exists');
+    throw new Error("User with this email already exists");
   }
 
   // 2. Save the user to the database (Business Logic)

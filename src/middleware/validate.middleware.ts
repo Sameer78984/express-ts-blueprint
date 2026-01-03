@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { ZodType, ZodError } from 'zod';
-import { StatusCodes } from '../constants/httpStatus';
+import { Request, Response, NextFunction } from "express";
+import { ZodType, ZodError } from "zod";
+import { StatusCodes } from "../constants/httpStatus";
 
 /**
  * 🕵️‍♂️ VALIDATION MIDDLEWARE
@@ -29,7 +29,7 @@ export const validateRequest =
       // 3. If invalid, stop here and return an error
       if (error instanceof ZodError) {
         res.status(StatusCodes.BAD_REQUEST).json({
-          message: 'Validation failed',
+          message: "Validation failed",
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           errors: (error as any).errors, // List of what went wrong
         });

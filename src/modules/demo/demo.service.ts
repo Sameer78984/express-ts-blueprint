@@ -1,4 +1,4 @@
-import { CreateDemoInput } from './demo.schema';
+import { CreateDemoInput } from "./demo.schema";
 
 export const createDemoMessage = async (input: CreateDemoInput) => {
   // Simulate database operation
@@ -11,7 +11,7 @@ export const createDemoMessage = async (input: CreateDemoInput) => {
 
 export const getDemoMessage = async () => {
   return {
-    message: 'This is a GET request demo',
+    message: "This is a GET request demo",
     timestamp: new Date(),
   };
 };

@@ -1,10 +1,10 @@
-import express from 'express';
-import { configureSecurityMiddleware } from './middleware/security.middleware';
-import { errorHandler } from './middleware/error.middleware';
-import { StatusCodes } from './constants/httpStatus';
-import { ApiError } from './utils/apiError';
-import demoRoutes from './modules/demo/demo.route';
-import userRoutes from './modules/users/user.route';
+import express from "express";
+import { configureSecurityMiddleware } from "./middleware/security.middleware";
+import { errorHandler } from "./middleware/error.middleware";
+import { StatusCodes } from "./constants/httpStatus";
+import { ApiError } from "./utils/apiError";
+import demoRoutes from "./modules/demo/demo.route";
+import userRoutes from "./modules/users/user.route";
 
 const app = express();
 
@@ -12,9 +12,9 @@ const app = express();
 // 1. GLOBAL MIDDLEWARE
 // ====================================================================
 // Parse JSON request bodies (limit size to prevent DoS)
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: "10kb" }));
 // Parse URL-encoded data
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 
 // Apply Security Middleware (Helmet, CORS, Rate Limiting)
 configureSecurityMiddleware(app);
@@ -24,13 +24,13 @@ configureSecurityMiddleware(app);
 // ====================================================================
 
 // Health Check Endpoint (useful for Load Balancers)
-app.get('/health', (req, res) => {
-  res.status(StatusCodes.OK).json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get("/health", (req, res) => {
+  res.status(StatusCodes.OK).json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 // Feature Routes
-app.use('/api/demo', demoRoutes);
-app.use('/api/users', userRoutes);
+app.use("/api/demo", demoRoutes);
+app.use("/api/users", userRoutes);
 
 // ====================================================================
 // 3. ERROR HANDLING

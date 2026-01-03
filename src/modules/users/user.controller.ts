@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { StatusCodes } from '../../constants/httpStatus';
-import { asyncHandler } from '../../utils/asyncHandler';
-import * as userService from './user.service';
-import { CreateUserInput } from './user.schema';
+import { Request, Response } from "express";
+import { StatusCodes } from "../../constants/httpStatus";
+import { asyncHandler } from "../../utils/asyncHandler";
+import * as userService from "./user.service";
+import { CreateUserInput } from "./user.schema";
 
 /**
  * 🎮 CONTROLLER (The Traffic Cop)
@@ -30,7 +30,7 @@ export const registerUser = asyncHandler(
     // 2. Controller sends the result back
     res.status(StatusCodes.CREATED).json({
       success: true,
-      message: 'User registered successfully',
+      message: "User registered successfully",
       data: user,
     });
   },

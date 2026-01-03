@@ -1,12 +1,12 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import prettierConfig from 'eslint-config-prettier';
-import prettierPlugin from 'eslint-plugin-prettier';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettierConfig from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
   // 1. Files to lint
-  { files: ['**/*.{js,mjs,cjs,ts}'] },
+  { files: ["**/*.{js,mjs,cjs,ts}"] },
 
   // 2. Global variables (Node.js)
   { languageOptions: { globals: globals.node } },
@@ -21,7 +21,7 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
-      'prettier/prettier': 'error',
+      "prettier/prettier": "error",
     },
   },
   prettierConfig, // Disables conflicting rules
@@ -29,14 +29,14 @@ export default [
   // 5. Custom Rules
   {
     rules: {
-      '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-console': 'off', // We allowed console for env.ts, keeping it off or warning properly
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+      "no-console": "off", // We allowed console for env.ts, keeping it off or warning properly
     },
   },
 
   // 6. Ignores (replacing .eslintignore)
   {
-    ignores: ['dist/*', 'node_modules/*', 'coverage/*'],
+    ignores: ["dist/*", "node_modules/*", "coverage/*"],
   },
 ];
