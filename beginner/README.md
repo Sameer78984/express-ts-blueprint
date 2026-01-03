@@ -27,6 +27,8 @@ cp .env.example .env
 ```
 (Windows: `copy .env.example .env`)
 
+> **Note**: Open `.env` and make sure `MONGO_URI` and `JWT_SECRET` are set correctly!
+
 ### 3. Run the Server
 ```bash
 npm run dev
@@ -87,6 +89,7 @@ We **never** store passwords in plain text. If a hacker viewed our database, the
 ### 🎟️ Tokens (JWT) & Cookies
 When you login, the server gives you a **Token** (like a digital ID card).
 - **HTTPOnly Cookies**: We put this token inside a special cookie that JavaScript cannot read. This prevents cross-site scripting (XSS) attacks.
+- **Expiration**: The cookie is set to expire in **7 days**.
 
 ### 📂 Project Structure
 ```
