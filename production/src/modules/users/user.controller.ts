@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { generateTokenAndSetCookie } from "../../utils/jwt.utils";
 import { StatusCodes } from "../../constants/httpStatus";
 import { asyncHandler } from "../../utils/asyncHandler";
 import * as userService from "./user.service";
@@ -27,10 +28,14 @@ export const registerUser = asyncHandler(
     // 1. Controller calls the Service to register the user
     const user = await userService.registerUser(req.body);
 
-    // 2. Controller sends the result back
+    // 2. Generate Token & Set Cookie
+    const token = generateTokenAndSetCookie(res, user.id, user.email);
+
+    // 3. Controller sends the result back
     res.status(StatusCodes.CREATED).json({
       success: true,
       message: "User registered successfully",
+      token, // Optional: send token in body too
       data: user,
     });
   },

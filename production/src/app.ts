@@ -1,5 +1,6 @@
 import express from "express";
 import { configureSecurityMiddleware } from "./middleware/security.middleware";
+import cookieParser from "cookie-parser";
 import { errorHandler } from "./middleware/error.middleware";
 import { StatusCodes } from "./constants/httpStatus";
 import { ApiError } from "./utils/apiError";
@@ -15,6 +16,7 @@ const app = express();
 app.use(express.json({ limit: "10kb" }));
 // Parse URL-encoded data
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use(cookieParser());
 
 // Apply Security Middleware (Helmet, CORS, Rate Limiting)
 configureSecurityMiddleware(app);
