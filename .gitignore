@@ -1,6 +1,19 @@
+# Dependencies
 node_modules
-dist
+
+# Environment
 .env
-coverage
+.env.local
+
+# Build
+dist
+build
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Logs
+logs
 *.log
+npm-debug.log*
