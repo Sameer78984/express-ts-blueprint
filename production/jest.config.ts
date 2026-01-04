@@ -9,6 +9,7 @@ const config: Config = {
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov", "html"],
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
+  setupFiles: ["<rootDir>/tests/jest.env.ts"],
   setupFilesAfterEnv: ["<rootDir>/tests/setup.ts"],
 };
 

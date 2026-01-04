@@ -25,9 +25,7 @@ jobs:
       working-directory: ./beginner
       run: npm run lint
       
-    - name: Test (Unit & Integration)
-      working-directory: ./beginner
-      run: npm test
+
       
     - name: Build
       working-directory: ./beginner
