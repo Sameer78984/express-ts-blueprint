@@ -73,6 +73,8 @@ cp .env.example .env
 ```bash
 npm run dev
 ```
+(Uses `tsx` for high-performance hot-reloading)
+```
 
 **Production Build**:
 

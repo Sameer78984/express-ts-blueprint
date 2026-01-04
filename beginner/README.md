@@ -33,6 +33,8 @@ cp .env.example .env
 ```bash
 npm run dev
 ```
+(Uses `tsx` for instant startup)
+```
 You should see:
 ```
 ✅ MongoDB Connected: ...
@@ -43,7 +45,9 @@ You should see:
 
 ## 🛠️ Testing the API
 
-Since we kept this project simple, we don't include automated test files. You can use tools like **Postman** or **Insomnia** to test it manually!
+Since we kept this project simple, we don't include automated test files. We use **Postman** or **Insomnia** to test it manually.
+
+> **Note**: We use `tsx` for super-fast development. When you change a file, the server restarts instantly!
 
 ### 1. Register a User
 - **Method**: `POST`
